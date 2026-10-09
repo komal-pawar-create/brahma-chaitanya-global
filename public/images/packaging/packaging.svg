@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A192F"/>
+      <stop offset="50%" stop-color="#0D253F"/>
+      <stop offset="100%" stop-color="#0A3E4C"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3D17A"/>
+      <stop offset="100%" stop-color="#C59B27"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="270" r="160" fill="#0A9396" opacity="0.1"/>
+  <circle cx="400" cy="270" r="120" fill="none" stroke="#C59B27" stroke-width="2" stroke-dasharray="6 6" opacity="0.4"/>
+
+  <!-- Stylized Box / Carton Icon -->
+  <g transform="translate(400, 270) scale(1.3)">
+    <!-- 3D Box perspective -->
+    <polygon points="0,-60 60,-25 0,10 -60,-25" fill="#C59B27" opacity="0.85"/>
+    <polygon points="0,10 60,-25 60,45 0,80" fill="#946C10"/>
+    <polygon points="-60,-25 0,10 0,80 -60,45" fill="#75550D"/>
+    <!-- Box tape line -->
+    <polyline points="0,-60 0,10" stroke="#FFF" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- Labels -->
+  <text x="400" y="440" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">EXPORT PACKAGING</text>
+  <text x="400" y="475" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="4">CORRUGATED CARTONS • VENTILATED CRATES</text>
+  <text x="400" y="520" font-family="system-ui, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">BRAHMA CHAITANYA GLOBAL • IMPORT | EXPORT</text>
+</svg>

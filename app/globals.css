@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-navy: #0A192F;
+  --secondary-teal: #0A9396;
+  --accent-gold: #C59B27;
+  --bg-light: #F8FAFC;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    color: #1A202C;
+  }
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #DFB15B 0%, #C59B27 50%, #946C10 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.teal-gradient-text {
+  background: linear-gradient(135deg, #0EABB0 0%, #0A9396 50%, #005F73 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navy-gradient-bg {
+  background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
+}
