@@ -1,29 +1,34 @@
+'use client';
+
 import React from 'react';
 import SectionHeading from '@/components/SectionHeading';
 import CTASection from '@/components/CTASection';
-import { Package, Shield, Truck, CheckCircle2 } from 'lucide-react';
+import { Package, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function PackagingPage() {
+  const { t } = useLanguage();
+
   const packagingSolutions = [
     {
-      title: 'Corrugated Export Cartons',
-      category: 'Fresh Vegetables & Produce',
-      description: 'Heavy-duty 3-ply and 5-ply ventilated carton boxes specifically engineered to maintain freshness and withstand international transit handling.',
+      title: t.packaging.s1Title,
+      category: t.packaging.s1Category,
+      description: t.packaging.s1Desc,
     },
     {
-      title: 'Net / Mesh Bags',
-      category: 'Bulk Vegetables (Onion & Potato)',
-      description: 'Aerated mesh bags facilitating optimal air circulation for root vegetables across standard export shipments.',
+      title: t.packaging.s2Title,
+      category: t.packaging.s2Category,
+      description: t.packaging.s2Desc,
     },
     {
-      title: 'Vacuum Sealed & Food-Grade Pouches',
-      category: 'Organic Dehydrated Powders',
-      description: 'Moisture-barrier food-grade aluminium or multi-layer pouches preserving natural aroma, color, and nutritional profile.',
+      title: t.packaging.s3Title,
+      category: t.packaging.s3Category,
+      description: t.packaging.s3Desc,
     },
     {
-      title: 'Customized & Private Label Packing',
-      category: 'Overseas Importers & Wholesalers',
-      description: 'Custom packaging configurations, container palletization, and customer-specified labeling tailored to importing country norms.',
+      title: t.packaging.s4Title,
+      category: t.packaging.s4Category,
+      description: t.packaging.s4Desc,
     },
   ];
 
@@ -31,9 +36,9 @@ export default function PackagingPage() {
     <div className="py-12 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          subtitle="Preservation & Logistics"
-          title="Export Packaging Showcase"
-          description="Engineered export packaging designed to ensure farm-fresh quality, hygiene, and transit durability from origin to destination port."
+          subtitle={t.packaging.subtitle}
+          title={t.packaging.title}
+          description={t.packaging.description}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
@@ -62,23 +67,29 @@ export default function PackagingPage() {
         <div className="bg-brand-navy-900 text-white rounded-2xl p-8 sm:p-10 border border-brand-navy-800 shadow-xl my-12">
           <div className="max-w-3xl">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Export Packing Protocol
+              {t.packaging.protocolTitle}
             </h3>
             <p className="text-slate-300 text-sm leading-relaxed mb-6">
-              Our packing practices adhere to international freight expectations, ensuring adequate ventilation, humidity control, and standardized container palletization.
+              {t.packaging.protocolDesc}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-brand-gold-400 flex-shrink-0" />
-                <span className="text-xs font-medium text-slate-200">Ventilation Optimized</span>
+                <span className="text-xs font-medium text-slate-200">
+                  {t.packaging.badgeVentilation}
+                </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-brand-teal-400 flex-shrink-0" />
-                <span className="text-xs font-medium text-slate-200">Temperature Safeguards</span>
+                <span className="text-xs font-medium text-slate-200">
+                  {t.packaging.badgeTemperature}
+                </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-brand-gold-400 flex-shrink-0" />
-                <span className="text-xs font-medium text-slate-200">Palletized Handling</span>
+                <span className="text-xs font-medium text-slate-200">
+                  {t.packaging.badgePalletized}
+                </span>
               </div>
             </div>
           </div>
@@ -87,8 +98,8 @@ export default function PackagingPage() {
 
       <div className="mt-16">
         <CTASection
-          title="Discuss Custom Packaging for Your Market"
-          description="Contact our team to specify container packing, box dimensions, and branding requirements for your orders."
+          title={t.packaging.ctaTitle}
+          description={t.packaging.ctaDesc}
         />
       </div>
     </div>

@@ -13,6 +13,7 @@ const config: Config = {
           navy: {
             DEFAULT: "#0A192F",
             dark: "#060D1A",
+            950: "#070E1B",
             900: "#0A192F",
             800: "#112240",
             700: "#1B3A60",

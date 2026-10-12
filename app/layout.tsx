@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import EnquiryButton from '@/components/EnquiryButton';
+import AppChrome from '@/components/AppChrome';
+import { LanguageProvider } from '@/context/LanguageContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -46,10 +45,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} scroll-smooth`}>
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-brand-teal-100 selection:text-brand-navy-900">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <EnquiryButton />
+        <LanguageProvider>
+          <AppChrome>{children}</AppChrome>
+        </LanguageProvider>
       </body>
     </html>
   );

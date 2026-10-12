@@ -1,0 +1,54 @@
+[
+  {
+    "id": "INQ-1791628963072",
+    "createdAt": "2026-10-10T10:42:43.072Z",
+    "name": "Rajesh Sharma",
+    "company": "Golden Grain Trading LLC",
+    "email": "rajesh@goldengrain.ae",
+    "phone": "+971521234567",
+    "product": "Onion",
+    "destination": "Jebel Ali Port, Dubai (UAE)",
+    "notes": "Looking for 50 MT red onions (45-60mm), packaged in 10kg mesh bags. Need CIF quotation for Dubai.",
+    "status": "new",
+    "notesInternal": "High priority - follow up on WhatsApp with CIF pricing."
+  },
+  {
+    "id": "INQ-1736502001",
+    "createdAt": "2026-10-10T06:35:28.207Z",
+    "name": "Ahmed Al-Mansoor",
+    "company": "Gulf Fresh Foods LLC",
+    "email": "purchasing@gulffresh.ae",
+    "phone": "+971501234567",
+    "product": "Green Chilli",
+    "destination": "Port of Sohar, Oman",
+    "notes": "Require 2x 40ft reefer containers of G4 Green Chillies weekly. Please share FOB and CIF rates.",
+    "status": "contacted",
+    "notesInternal": "Sent initial catalog and pricing sheet."
+  },
+  {
+    "id": "INQ-1736480000",
+    "createdAt": "2026-10-09T10:35:28.209Z",
+    "name": "Tan Wei Ming",
+    "company": "Asia Agro Imports Pte Ltd",
+    "email": "twming@asiaagro.com.sg",
+    "phone": "+6591234567",
+    "product": "Potato",
+    "destination": "Port of Singapore",
+    "notes": "Grade A processing potatoes (Lady Rosetta / Chipsona) for crisp manufacturing. 25 MT test shipment.",
+    "status": "quoted",
+    "notesInternal": "Quoted $420/MT CIF Singapore. Awaiting PO."
+  },
+  {
+    "id": "INQ-1736390000",
+    "createdAt": "2026-10-08T10:35:28.209Z",
+    "name": "Mohd Razak",
+    "company": "Nusantara Spices & Produce",
+    "email": "razak@nusantaraspices.my",
+    "phone": "+60123456789",
+    "product": "Moringa Powder",
+    "destination": "Port Klang, Malaysia",
+    "notes": "Inquiry for 1,000 kg organic shade-dried Moringa leaf powder with phytosanitary & lab test certificates.",
+    "status": "closed",
+    "notesInternal": "Order confirmed and LC received for first batch."
+  }
+]
