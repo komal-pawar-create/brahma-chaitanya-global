@@ -2,7 +2,11 @@ import fs from 'fs/promises';
 import path from 'path';
 import { Inquiry, InquiryStats, InquiryStatus } from '@/types/inquiry';
 
-const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'inquiries.json');
+const LOCAL_DATA_FILE = path.join(process.cwd(), 'data', 'inquiries.json');
+const TMP_DATA_FILE = path.join('/tmp', 'inquiries.json');
+
+// In-memory cache across serverless warm invocations
+let inMemoryInquiries: Inquiry[] | null = null;
 
 const INITIAL_INQUIRIES: Inquiry[] = [
   {
@@ -44,28 +48,57 @@ const INITIAL_INQUIRIES: Inquiry[] = [
 ];
 
 export async function getInquiries(): Promise<Inquiry[]> {
+  if (inMemoryInquiries && inMemoryInquiries.length > 0) {
+    return inMemoryInquiries;
+  }
+
+  // 1. Try reading from /tmp if previously written in serverless environment
   try {
-    const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
+    const tmpContent = await fs.readFile(TMP_DATA_FILE, 'utf-8');
+    const parsed = JSON.parse(tmpContent);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      inMemoryInquiries = parsed;
+      return parsed;
+    }
+  } catch {
+    // /tmp does not exist yet or is empty, continue
+  }
+
+  // 2. Try reading from local project data file (bundled read-only in Vercel)
+  try {
+    const fileContent = await fs.readFile(LOCAL_DATA_FILE, 'utf-8');
     const data = JSON.parse(fileContent);
     if (Array.isArray(data)) {
+      inMemoryInquiries = data;
       return data;
     }
-    return INITIAL_INQUIRIES;
   } catch (error: any) {
-    if (error?.code === 'ENOENT') {
-      // If file doesn't exist, create it with initial seed inquiries
-      await saveAllInquiries(INITIAL_INQUIRIES);
-      return INITIAL_INQUIRIES;
-    }
-    console.error('Error reading inquiries:', error);
-    return [];
+    // File not found or read error
   }
+
+  inMemoryInquiries = INITIAL_INQUIRIES;
+  return INITIAL_INQUIRIES;
 }
 
 export async function saveAllInquiries(inquiries: Inquiry[]): Promise<void> {
-  const dir = path.dirname(DATA_FILE_PATH);
-  await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(DATA_FILE_PATH, JSON.stringify(inquiries, null, 2), 'utf-8');
+  // Always update in-memory state
+  inMemoryInquiries = inquiries;
+
+  // Try writing to local project path first (works in local dev)
+  try {
+    const dir = path.dirname(LOCAL_DATA_FILE);
+    await fs.mkdir(dir, { recursive: true });
+    await fs.writeFile(LOCAL_DATA_FILE, JSON.stringify(inquiries, null, 2), 'utf-8');
+    return;
+  } catch (err: any) {
+    // If read-only filesystem (e.g. Vercel Serverless / AWS Lambda EROFS), write to /tmp
+    try {
+      await fs.writeFile(TMP_DATA_FILE, JSON.stringify(inquiries, null, 2), 'utf-8');
+      return;
+    } catch (tmpErr) {
+      console.warn('Could not write to /tmp file, using in-memory state:', tmpErr);
+    }
+  }
 }
 
 export async function createInquiry(data: Omit<Inquiry, 'id' | 'createdAt' | 'status'>): Promise<Inquiry> {
@@ -99,7 +132,6 @@ export async function updateInquiry(
   current[index] = {
     ...current[index],
     ...updates,
-    // Clean string values if provided
     ...(updates.name !== undefined && { name: updates.name.trim() }),
     ...(updates.company !== undefined && { company: updates.company.trim() || undefined }),
     ...(updates.email !== undefined && { email: updates.email.trim() }),

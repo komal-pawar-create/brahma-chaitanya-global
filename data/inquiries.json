@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "INQ-1791875580396",
+    "createdAt": "2026-10-13T07:13:00.396Z",
+    "name": "Test Buyer",
+    "email": "buyer@test.com",
+    "phone": "+919876543210",
+    "product": "Green Chilli",
+    "destination": "Dubai",
+    "status": "new"
+  }
+]
