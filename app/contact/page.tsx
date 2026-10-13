@@ -7,7 +7,7 @@ import CTASection from '@/components/CTASection';
 import {
   Mail, Phone, MapPin, Send, Globe, MessageSquare,
   CheckCircle2, Loader2, MessageCircle, Clock, Shield,
-  ArrowRight, Building2, Package, Star
+  ArrowRight, Building2, Package, Star, Ship, Plane, Anchor
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { products, getLocalizedProduct } from '@/data/products';
@@ -355,6 +355,37 @@ export default function ContactPage() {
                 Browse our products
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
+            </div>
+
+            {/* Departure Hubs & Freight Ports Card */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-200 text-slate-700 shadow-sm space-y-4">
+              <div className="flex items-center gap-3">
+                <Anchor className="w-5 h-5 text-brand-gold-600" />
+                <h4 className="font-bold text-sm text-brand-navy-900">Departure Hubs & Logistics</h4>
+              </div>
+
+              <div className="space-y-3 text-xs">
+                <div className="flex items-start gap-2.5">
+                  <Ship className="w-4 h-4 text-brand-teal-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="font-bold text-slate-900 block">Sea Freight Terminal</span>
+                    <span className="text-slate-500">Jawaharlal Nehru Port Trust (JNPT / Nhava Sheva), Navi Mumbai</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5">
+                  <Plane className="w-4 h-4 text-brand-teal-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="font-bold text-slate-900 block">Air Cargo Terminal</span>
+                    <span className="text-slate-500">Chhatrapati Shivaji Maharaj International Airport (BOM), Mumbai</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span>Standard Incoterms:</span>
+                <span className="font-bold text-brand-navy-900">FOB, CIF, CFR</span>
+              </div>
             </div>
           </div>
 
