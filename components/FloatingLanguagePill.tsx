@@ -12,13 +12,6 @@ export default function FloatingLanguagePill() {
   const [modalOpen, setModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  if (pathname.startsWith('/admin')) {
-    return null;
-  }
-
-  const currentOption =
-    SUPPORTED_LANGUAGES.find((l) => l.code === language) || SUPPORTED_LANGUAGES[0];
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -28,6 +21,13 @@ export default function FloatingLanguagePill() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
+  const currentOption =
+    SUPPORTED_LANGUAGES.find((l) => l.code === language) || SUPPORTED_LANGUAGES[0];
 
   const handleSelect = (code: Language) => {
     setLanguage(code);

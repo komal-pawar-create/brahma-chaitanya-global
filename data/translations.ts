@@ -131,8 +131,12 @@ export interface TranslationContent {
     sendAnother: string;
     nameLabel: string;
     namePlaceholder: string;
+    companyLabel?: string;
+    companyPlaceholder?: string;
     emailLabel: string;
     emailPlaceholder: string;
+    phoneLabel?: string;
+    phonePlaceholder?: string;
     productLabel: string;
     destLabel: string;
     destPlaceholder: string;
