@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Shield,
   Lock,
@@ -379,8 +380,15 @@ export default function AdminDashboardPage() {
           {/* Subtle glow effect */}
           <div className="absolute top-0 right-0 w-48 h-48 bg-brand-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="w-16 h-16 rounded-2xl bg-[#091220] border border-brand-gold-500/30 flex items-center justify-center mx-auto mb-6 text-brand-gold-400 shadow-inner">
-            <Shield className="w-8 h-8" />
+          <div className="relative w-20 h-20 rounded-2xl bg-white p-2 border-2 border-amber-400/60 flex items-center justify-center mx-auto mb-6 shadow-xl">
+            <Image
+              src="/images/logo/logo.png"
+              alt="Brahma Chaitanya Global Logo"
+              fill
+              sizes="80px"
+              className="object-contain p-1"
+              priority
+            />
           </div>
 
           <div className="text-center mb-8">
@@ -456,13 +464,15 @@ export default function AdminDashboardPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 p-0.5 shadow-lg flex items-center justify-center flex-shrink-0">
-              <div
-                style={{ backgroundColor: '#070E1B' }}
-                className="w-full h-full rounded-[10px] flex items-center justify-center font-black text-amber-400 text-base tracking-wider"
-              >
-                BCG
-              </div>
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white p-1 rounded-2xl border-2 border-amber-400/60 shadow-lg flex items-center justify-center flex-shrink-0">
+              <Image
+                src="/images/logo/logo.png"
+                alt="Brahma Chaitanya Global Logo"
+                fill
+                sizes="56px"
+                className="object-contain p-0.5"
+                priority
+              />
             </div>
             <div>
               <div className="flex items-center gap-3 flex-wrap">

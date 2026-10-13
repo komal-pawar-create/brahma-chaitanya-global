@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import EnquiryButton from '@/components/EnquiryButton';
-import FloatingLanguagePill from '@/components/FloatingLanguagePill';
 
 export default function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -21,7 +20,6 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
       <main className="flex-1">{children}</main>
       <Footer />
       <EnquiryButton />
-      <FloatingLanguagePill />
     </>
   );
 }
