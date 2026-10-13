@@ -499,7 +499,7 @@ export default function AdminDashboardPage() {
               className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl transition-all shadow-md flex items-center gap-1.5"
             >
               <Plus className="w-4 h-4" />
-              <span>+ Add Lead</span>
+              <span>Add Lead</span>
             </button>
 
             {/* Export CSV */}
@@ -617,9 +617,11 @@ export default function AdminDashboardPage() {
                 </div>
               </div>
               <p className="text-2xl font-black text-[#0b1528] mt-2 truncate tracking-tight">
-                {stats.topProduct}
+                {stats.total > 0 && stats.topProduct && stats.topProduct !== 'None' ? stats.topProduct : '—'}
               </p>
-              <p className="text-[11px] text-slate-400 mt-0.5">Highest inquiry volume</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">
+                {stats.total > 0 ? 'Highest inquiry volume' : 'Awaiting inquiries'}
+              </p>
             </div>
           </div>
         )}
@@ -760,28 +762,45 @@ export default function AdminDashboardPage() {
               <p className="text-sm font-semibold text-slate-700">Loading export leads...</p>
             </div>
           ) : filteredInquiries.length === 0 ? (
-            <div className="bg-white rounded-2xl p-14 text-center border border-slate-200 shadow-sm">
+            <div className="bg-white rounded-2xl p-12 sm:p-16 text-center border border-slate-200 shadow-sm">
               <div className="w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center mx-auto mb-4 border border-slate-200">
-                <Inbox className="w-8 h-8" />
+                <Inbox className="w-8 h-8 text-slate-400" />
               </div>
-              <h3 className="text-base font-bold text-slate-800">No Inquiries Found</h3>
-              <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+              <h3 className="text-lg font-bold text-slate-900">
                 {searchQuery || statusFilter !== 'all' || productFilter !== 'all'
-                  ? 'No inquiries match your selected filters. Try clearing your search query.'
-                  : 'No export inquiries have been recorded yet.'}
+                  ? 'No Inquiries Match Filters'
+                  : 'No Export Inquiries Recorded Yet'}
+              </h3>
+              <p className="text-xs text-slate-500 mt-1.5 max-w-md mx-auto leading-relaxed">
+                {searchQuery || statusFilter !== 'all' || productFilter !== 'all'
+                  ? 'No buyer inquiries match your active search or filter selection. Try clearing your filters.'
+                  : 'Customer inquiries received from the public website contact form and WhatsApp triggers will automatically appear in this registry.'}
               </p>
-              {(searchQuery || statusFilter !== 'all' || productFilter !== 'all') && (
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setStatusFilter('all');
-                    setProductFilter('all');
-                  }}
-                  className="mt-4 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-colors"
-                >
-                  Clear All Filters
-                </button>
-              )}
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                {searchQuery || statusFilter !== 'all' || productFilter !== 'all' ? (
+                  <button
+                    onClick={() => {
+                      setSearchQuery('');
+                      setStatusFilter('all');
+                      setProductFilter('all');
+                    }}
+                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-colors"
+                  >
+                    Clear All Filters
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => setShowAddModal(true)}
+                      className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Create New Lead</span>
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           ) : viewMode === 'table' ? (
             /* PROFESSIONAL DATA TABLE VIEW */

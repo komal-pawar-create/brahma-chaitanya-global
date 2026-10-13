@@ -135,7 +135,7 @@ export async function getInquiryStats(): Promise<InquiryStats> {
     productCounts[i.product] = (productCounts[i.product] || 0) + 1;
   });
 
-  let topProduct = 'Green Chilli';
+  let topProduct = total > 0 ? '—' : 'None';
   let maxCount = 0;
   for (const [prod, count] of Object.entries(productCounts)) {
     if (count > maxCount) {
