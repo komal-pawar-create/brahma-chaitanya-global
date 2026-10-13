@@ -117,7 +117,7 @@ export default function AdminDashboardPage() {
       setAuthError('');
       localStorage.setItem('bcg_admin_auth', 'true');
     } else {
-      setAuthError('Invalid Admin PIN. (Default PIN: 9850)');
+      setAuthError('Invalid Admin PIN. Please try again.');
     }
   };
 
@@ -405,20 +405,16 @@ export default function AdminDashboardPage() {
 
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="mb-2">
                 <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Security PIN / Password
                 </label>
-                <span className="text-[11px] font-mono text-brand-gold-400 font-bold">
-                  PIN: 9850
-                </span>
               </div>
               <div className="relative">
                 <input
                   type="password"
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
-                  placeholder="Enter 4-digit PIN (9850)"
                   className="w-full px-4 py-3.5 bg-[#070e1b] border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold-500 focus:ring-1 focus:ring-brand-gold-500 text-sm font-mono tracking-widest"
                   autoFocus
                 />
