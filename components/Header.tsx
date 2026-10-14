@@ -30,18 +30,18 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all">
       {/* Top micro-bar for export/corporate identity + Quick Language Switcher & Contact */}
       <div className="bg-brand-navy-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 border-b border-brand-navy-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-brand-gold-400"></span>
-            <span className="font-medium tracking-wider text-slate-200">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="inline-block w-2 h-2 rounded-full bg-brand-gold-400 flex-shrink-0"></span>
+            <span className="font-medium tracking-wider text-slate-200 truncate">
               {t.nav.brandName} {t.nav.brandTag}
             </span>
-            <span className="text-slate-400">|</span>
-            <span className="text-brand-gold-400 font-semibold tracking-widest text-[11px] uppercase">
+            <span className="hidden sm:inline text-slate-400">|</span>
+            <span className="hidden sm:inline text-brand-gold-400 font-semibold tracking-widest text-[11px] uppercase whitespace-nowrap">
               {t.nav.importExport}
             </span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <a
               href="tel:+919850153181"
               className="hidden lg:flex items-center gap-1.5 text-[11px] text-slate-300 hover:text-brand-gold-400 transition-colors"
@@ -68,19 +68,19 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+            <div className="relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0">
               <Image
                 src="/images/logo/logo.png"
                 alt="Brahma Chaitanya Global Logo"
                 fill
-                sizes="(max-width: 640px) 56px, 64px"
+                sizes="(max-width: 640px) 48px, 64px"
                 className="object-contain"
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-extrabold tracking-tight text-brand-navy-900 group-hover:text-brand-teal-700 transition-colors">
+            <div className="flex flex-col min-w-0">
+              <span className="text-base sm:text-xl font-extrabold tracking-tight text-brand-navy-900 group-hover:text-brand-teal-700 transition-colors truncate">
                 {t.nav.brandName}
               </span>
               <div className="flex items-center gap-1.5 -mt-0.5">
@@ -88,7 +88,7 @@ export default function Header() {
                   {t.nav.brandTag}
                 </span>
                 <span className="text-[10px] text-slate-400">•</span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-gold-600">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-gold-600 truncate">
                   {t.nav.importExport}
                 </span>
               </div>
@@ -117,9 +117,9 @@ export default function Header() {
           </nav>
 
           {/* Right: Language Switcher, Enquire Now Button & Mobile Hamburger */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Language Switcher */}
-            <div className="flex items-center">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            {/* Language Switcher on larger screens */}
+            <div className="hidden sm:flex items-center">
               <LanguageSwitcher variant="header" />
             </div>
 

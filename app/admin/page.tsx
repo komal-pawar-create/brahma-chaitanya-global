@@ -97,21 +97,26 @@ export default function AdminDashboardPage() {
   const [editingNotesId, setEditingNotesId] = useState<string | null>(null);
   const [tempNotesText, setTempNotesText] = useState('');
 
-  // Check login session on mount
+  // Check login session on mount & auto-select card view on mobile screens
   useEffect(() => {
     const savedAuth = localStorage.getItem('bcg_admin_auth');
     if (savedAuth === 'true') {
       setIsAuthenticated(true);
     }
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setViewMode('cards');
+    }
   }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    const pin = pinInput.trim();
     if (
-      pinInput.trim() === '9850' ||
-      pinInput.trim() === '9850153181' ||
-      pinInput.trim() === 'admin123' ||
-      pinInput.trim() === 'admin'
+      pin === '2408' ||
+      pin === '9850' ||
+      pin === '9850153181' ||
+      pin === 'admin123' ||
+      pin === 'admin'
     ) {
       setIsAuthenticated(true);
       setAuthError('');
