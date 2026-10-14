@@ -10,6 +10,9 @@ const TMP_DATA_FILE = path.join('/tmp', 'inquiries.json');
 let inMemoryInquiries: Inquiry[] | null = null;
 let tableInitialized = false;
 
+// Neon PostgreSQL active database connector
+
+
 function getDb() {
   const dbUrl =
     process.env.DATABASE_URL ||
