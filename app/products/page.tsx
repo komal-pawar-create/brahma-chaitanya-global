@@ -14,7 +14,8 @@ import {
   Layers,
   CheckCircle2,
   SlidersHorizontal,
-  ArrowRight
+  ArrowRight,
+  Home
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -40,6 +41,19 @@ export default function ProductsPage() {
     <div>
       <div className="py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb Navigation */}
+          <div className="mb-6 flex items-center gap-2 text-xs font-semibold text-slate-500">
+            <Link
+              href="/"
+              className="hover:text-brand-navy-900 transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded-lg bg-white border border-slate-200 shadow-2xs"
+            >
+              <Home className="w-3.5 h-3.5 text-brand-gold-500" />
+              <span>Home</span>
+            </Link>
+            <span className="text-slate-300">/</span>
+            <span className="text-brand-teal-700 font-bold">Export Products</span>
+          </div>
+
           <SectionHeading
             subtitle={t.products.subtitle}
             title={t.products.title}
