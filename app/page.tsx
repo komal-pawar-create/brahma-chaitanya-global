@@ -2,11 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import HeroSection from '@/components/HeroSection';
-import SectionHeading from '@/components/SectionHeading';
-import ProductGrid from '@/components/ProductGrid';
 import CTASection from '@/components/CTASection';
-import { products } from '@/data/products';
 import { useLanguage } from '@/context/LanguageContext';
 import {
   Globe2,
@@ -25,7 +23,9 @@ import {
   Layers,
   FileCheck,
   Building2,
-  Anchor
+  Anchor,
+  Sparkles,
+  ChevronRight
 } from 'lucide-react';
 
 const trustHighlights = [
@@ -125,24 +125,121 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Featured Products Section */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          subtitle={t.home.portfolioSubtitle}
-          title={t.home.portfolioTitle}
-          description={t.home.portfolioDesc}
-        />
+      {/* Export Produce Gateway & Portfolio Section */}
+      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-brand-navy-950 via-brand-navy-900 to-slate-900 text-white rounded-3xl p-6 sm:p-10 lg:p-14 relative overflow-hidden border border-brand-navy-800 shadow-xl">
+          {/* Subtle background glow */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-brand-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-teal-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <ProductGrid products={products} />
+          {/* Top Header Row with Direct Action Button */}
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-white/10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy-800 text-brand-gold-400 text-xs font-bold uppercase tracking-wider mb-3 border border-brand-gold-500/30">
+                <Sparkles className="w-3.5 h-3.5 text-brand-gold-400" />
+                <span>Export Product Portfolio</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Export-Grade Indian Agricultural Produce
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl leading-relaxed">
+                Directly sourced from premier growing belts in Maharashtra, uniformly sorted, and packed for international container sea &amp; air cargo.
+              </p>
+            </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-brand-navy-900 hover:bg-brand-navy-800 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg group"
-          >
-            <span>Explore All Export Products</span>
-            <ArrowRight className="w-4 h-4 text-brand-gold-400 group-hover:translate-x-1 transition-transform" />
-          </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-gold-500 hover:bg-brand-gold-400 text-brand-navy-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-brand-gold-500/20 flex-shrink-0 group"
+            >
+              <span>Explore All Products</span>
+              <ArrowRight className="w-4 h-4 text-brand-navy-950 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          {/* Quick Produce Showcase Grid - Compact & Responsive */}
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {[
+              {
+                name: 'Green Chilli',
+                variety: 'G4 Export Grade',
+                image: '/images/products/green-chilli/main.jpg',
+                slug: 'green-chilli',
+              },
+              {
+                name: 'Nashik Onion',
+                variety: 'Red & Pink Globe',
+                image: '/images/products/onion/main.jpg',
+                slug: 'onion',
+              },
+              {
+                name: 'Fresh Potato',
+                variety: 'Table & Processing',
+                image: '/images/products/potato/main.jpg',
+                slug: 'potato',
+              },
+              {
+                name: 'Farm Tomato',
+                variety: 'Export Firm Red',
+                image: '/images/products/tomato/main.jpg',
+                slug: 'tomato',
+              },
+              {
+                name: 'Moringa Powder',
+                variety: '100% Organic Leaf',
+                image: '/images/products/moringa/main.jpg',
+                slug: 'moringa-powder',
+              },
+              {
+                name: 'Mushroom Powder',
+                variety: 'Dehydrated White Button',
+                image: '/images/products/mushroom/main.jpg',
+                slug: 'mushroom-powder',
+              },
+            ].map((prod) => (
+              <Link
+                key={prod.name}
+                href={`/products/${prod.slug}`}
+                className="group/card bg-white/5 hover:bg-white/10 rounded-2xl p-2.5 sm:p-3 border border-white/10 hover:border-brand-gold-500/50 transition-all flex flex-col justify-between"
+              >
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-2.5 bg-slate-900">
+                  <Image
+                    src={prod.image}
+                    alt={prod.name}
+                    fill
+                    sizes="(max-width: 640px) 160px, 200px"
+                    className="object-cover group-hover/card:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-white group-hover/card:text-brand-gold-400 transition-colors truncate">
+                    {prod.name}
+                  </h4>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 truncate mt-0.5">
+                    {prod.variety}
+                  </p>
+                </div>
+                <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-bold text-brand-gold-400">
+                  <span>View Specs</span>
+                  <ChevronRight className="w-3 h-3 group-hover/card:translate-x-0.5 transition-transform" />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Bottom quick bar */}
+          <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-300">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Available for Sea Reefer (40ft FCL) and Air Freight dispatch</span>
+            </div>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-1.5 text-brand-gold-400 hover:text-brand-gold-300 font-bold transition-colors"
+            >
+              <span>View full catalog &amp; packaging details</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
 

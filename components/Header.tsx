@@ -3,15 +3,21 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight, Phone, Mail } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Menu, X, ArrowRight, Phone, Mail, MessageCircle, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { t } = useLanguage();
+
+  const handleMobileNav = (href: string) => {
+    setMobileMenuOpen(false);
+    router.push(href);
+  };
 
   const navItems = [
     { label: t.nav.home, href: '/' },
@@ -57,34 +63,35 @@ export default function Header() {
               <Mail className="w-3 h-3 text-brand-gold-400" />
               <span>brahmachaitanyag@gmail.com</span>
             </a>
-            <span className="hidden xl:inline text-slate-600">|</span>
-            {/* Topbar Quick Language Switcher */}
-            <LanguageSwitcher variant="topbar" />
           </div>
         </div>
       </div>
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
-            <div className="relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2.5 sm:gap-3 group min-w-0"
+          >
+            <div className="relative w-10 h-10 sm:w-16 sm:h-16 flex-shrink-0">
               <Image
                 src="/images/logo/logo.png"
                 alt="Brahma Chaitanya Global Logo"
                 fill
-                sizes="(max-width: 640px) 48px, 64px"
+                sizes="(max-width: 640px) 40px, 64px"
                 className="object-contain"
                 priority
               />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-base sm:text-xl font-extrabold tracking-tight text-brand-navy-900 group-hover:text-brand-teal-700 transition-colors truncate">
+              <span className="text-sm sm:text-xl font-extrabold tracking-tight text-brand-navy-900 group-hover:text-brand-teal-700 transition-colors truncate">
                 {t.nav.brandName}
               </span>
               <div className="flex items-center gap-1.5 -mt-0.5">
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-brand-teal-600">
+                <span className="text-[11px] sm:text-sm font-bold tracking-widest text-brand-teal-600">
                   {t.nav.brandTag}
                 </span>
                 <span className="text-[10px] text-slate-400">•</span>
@@ -135,11 +142,11 @@ export default function Header() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-slate-700 hover:text-brand-navy-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-teal-500"
+              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 transition-colors focus:outline-none"
               aria-expanded={mobileMenuOpen}
               aria-label={t.nav.toggleMenu}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-slate-900" /> : <Menu className="w-5 h-5 text-slate-900" />}
             </button>
           </div>
         </div>
@@ -147,39 +154,69 @@ export default function Header() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="px-4 pt-3 pb-6 space-y-1.5">
-            {/* Mobile Language Switcher */}
-            <div className="pb-3 mb-2 border-b border-slate-100">
-              <LanguageSwitcher variant="mobile" />
-            </div>
+        <div className="lg:hidden border-t border-slate-200 bg-white shadow-2xl max-h-[calc(100vh-4.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="px-4 py-4 space-y-4">
+            {/* Primary Navigation Links */}
+            <nav className="space-y-1">
+              {navItems.map((item) => {
+                const isActive =
+                  pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+                return (
+                  <button
+                    key={item.href}
+                    type="button"
+                    onClick={() => handleMobileNav(item.href)}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
+                      isActive
+                        ? 'bg-brand-navy-900 text-white shadow-sm'
+                        : 'text-slate-700 hover:bg-slate-100 hover:text-brand-navy-900'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    <ChevronRight
+                      className={`w-4 h-4 ${isActive ? 'text-brand-gold-400' : 'text-slate-400'}`}
+                    />
+                  </button>
+                );
+              })}
+            </nav>
 
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-colors ${
-                    isActive
-                      ? 'bg-brand-navy-50 text-brand-navy-900 font-bold border-l-4 border-brand-teal-600'
-                      : 'text-slate-700 hover:bg-slate-50 hover:text-brand-navy-900'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <div className="pt-4 border-t border-slate-100">
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-brand-navy-900 text-white px-5 py-3 rounded-lg text-sm font-semibold shadow"
+            {/* Enquire Now Action Button */}
+            <div>
+              <button
+                type="button"
+                onClick={() => handleMobileNav('/contact')}
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-brand-navy-950 to-brand-navy-900 text-white px-5 py-3.5 rounded-xl text-sm font-bold shadow-md border border-brand-gold-500/40"
               >
                 <span>{t.nav.enquireNow}</span>
                 <ArrowRight className="w-4 h-4 text-brand-gold-400" />
-              </Link>
+              </button>
+            </div>
+
+            {/* Quick 1-Tap Contact Strip for Buyers on Mobile */}
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <a
+                href="https://wa.me/919850153181?text=Hello%20Brahma%20Chaitanya%20Global%2C%20I%20am%20interested%20in%20agricultural%20export%20quotation."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition-colors"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <span>WhatsApp</span>
+              </a>
+
+              <a
+                href="tel:+919850153181"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-xs font-bold transition-colors"
+              >
+                <Phone className="w-4 h-4 text-brand-teal-700" />
+                <span>Call Export</span>
+              </a>
+            </div>
+
+            {/* Language Switcher Section (Clean & Collapsible at bottom) */}
+            <div className="pt-2 border-t border-slate-100">
+              <LanguageSwitcher variant="mobile" />
             </div>
           </div>
         </div>

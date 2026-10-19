@@ -10,8 +10,8 @@ export const products: Product[] = [
     tagline: 'Premium quality fresh green chillies for global export',
     description:
       'Supplied directly for international wholesale and commercial requirements with consistent grading and export standard sorting.',
-    mainImage: '/images/products/green-chilli/main.svg',
-    gallery: ['/images/products/green-chilli/main.svg'],
+    mainImage: '/images/products/green-chilli/main.jpg',
+    gallery: ['/images/products/green-chilli/main.jpg'],
     varieties: [
       { name: 'G4 Green Chilli', marketType: 'Export / Wholesale' },
       { name: 'G5 Green Chilli', marketType: 'Fresh Market' },
@@ -87,8 +87,8 @@ export const products: Product[] = [
     tagline: 'Export grade fresh onions sorted and graded for international markets',
     description:
       'Carefully harvested, sun-cured, and cleaned export quality red and pink onions. High pungency, firm skins, and extended transit life for overseas containers.',
-    mainImage: '/images/products/onion/main.svg',
-    gallery: ['/images/products/onion/main.svg'],
+    mainImage: '/images/products/onion/main.jpg',
+    gallery: ['/images/products/onion/main.jpg'],
     varieties: [
       { name: 'Nashik Red Onion (Garwa)', marketType: 'Global Export & Supermarkets' },
       { name: 'Pink Onion', marketType: 'Middle East & Southeast Asia' },
@@ -165,8 +165,8 @@ export const products: Product[] = [
     tagline: 'Farm-fresh potatoes graded for processing, wholesale, and export',
     description:
       'Evenly graded potatoes sourced from fertile agricultural belts. Clean skin, solid flesh, low sugar content varieties for table consumption and wafer/fries processing.',
-    mainImage: '/images/products/potato/main.svg',
-    gallery: ['/images/products/potato/main.svg'],
+    mainImage: '/images/products/potato/main.jpg',
+    gallery: ['/images/products/potato/main.jpg'],
     varieties: [
       { name: 'Lady Rosetta (Processing)', marketType: 'Chips & Snack Manufacturing' },
       { name: 'Chipsona (1 & 2)', marketType: 'French Fries & Commercial Kitchens' },
@@ -243,8 +243,8 @@ export const products: Product[] = [
     tagline: 'Carefully sorted and packed fresh tomatoes for international supply',
     description:
       'Export-grade firm red and semi-ripe tomatoes. Harvested at turning stage for extended international transit, featuring uniform size, bright color, and high pulp density.',
-    mainImage: '/images/products/tomato/main.svg',
-    gallery: ['/images/products/tomato/main.svg'],
+    mainImage: '/images/products/tomato/main.jpg',
+    gallery: ['/images/products/tomato/main.jpg'],
     varieties: [
       { name: 'Hybrid Round Tomato', marketType: 'Fresh Retail & Wholesalers' },
       { name: 'Roma / Plum Type (Elongated)', marketType: 'Culinary, Puree & Sauces' },
@@ -318,8 +318,8 @@ export const products: Product[] = [
     tagline: 'Finely processed nutrient-rich moringa powder for global buyers',
     description:
       '100% natural, shadow-dried drumstick leaf powder (Moringa Oleifera). Retains vibrant green hue, rich in antioxidants, plant protein, iron, and multivitamins for health formulations.',
-    mainImage: '/images/products/moringa/main.svg',
-    gallery: ['/images/products/moringa/main.svg'],
+    mainImage: '/images/products/moringa/main.jpg',
+    gallery: ['/images/products/moringa/main.jpg'],
     varieties: [
       { name: 'Organic Drumstick Leaf Powder (Fine 80–100 Mesh)', marketType: 'Nutraceuticals & Dietary Supplements' },
       { name: 'Standard Grade Moringa Leaf Powder', marketType: 'Food Ingredients & Fortification' },
@@ -395,8 +395,8 @@ export const products: Product[] = [
     tagline: 'Premium dried and ground mushroom powder for industrial and culinary use',
     description:
       'Carefully dehydrated oyster and button mushrooms ground to exact mesh specifications. Delivers rich umami flavor, vitamin D, and functional polysaccharides for food processors.',
-    mainImage: '/images/products/mushroom/main.svg',
-    gallery: ['/images/products/mushroom/main.svg'],
+    mainImage: '/images/products/mushroom/main.jpg',
+    gallery: ['/images/products/mushroom/main.jpg'],
     varieties: [
       { name: 'Oyster Mushroom Powder (Pleurotus)', marketType: 'Health Foods & Supplements' },
       { name: 'Button Mushroom Powder (Agaricus)', marketType: 'Soups, Seasonings & Sauces' },

@@ -36,40 +36,73 @@ export default function LanguageSwitcher({
     setIsOpen(false);
   };
 
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+
   if (variant === 'mobile') {
     return (
       <div className={`pt-2 ${className}`}>
-        <div className="flex items-center gap-2 mb-2.5 text-xs font-bold text-slate-500 uppercase tracking-wider">
-          <Globe className="w-4 h-4 text-brand-teal-600" />
-          <span>Export Market &amp; Language / भाषा निवडा</span>
-        </div>
-        <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1">
-          {SUPPORTED_LANGUAGES.map((lang) => {
-            const isActive = language === lang.code;
-            return (
-              <button
-                key={lang.code}
-                type="button"
-                onClick={() => handleSelect(lang.code)}
-                className={`py-2 px-2.5 rounded-xl text-left border flex items-center gap-2 transition-all ${
-                  isActive
-                    ? 'bg-brand-navy-900 text-brand-gold-400 border-brand-gold-500 shadow-sm'
-                    : 'bg-slate-50 text-slate-800 hover:bg-slate-100 border-slate-200'
-                }`}
-              >
-                <span className="text-base">{lang.flag}</span>
-                <div className="flex flex-col min-w-0">
-                  <span className="text-xs font-bold truncate leading-tight">
-                    {lang.nativeLabel}
-                  </span>
-                  <span className="text-[10px] text-slate-400 truncate leading-tight">
-                    {lang.country}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
+        <button
+          type="button"
+          onClick={() => setMobileExpanded(!mobileExpanded)}
+          className="w-full flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-colors"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center flex-shrink-0 text-brand-teal-600 shadow-2xs">
+              <Globe className="w-4 h-4" />
+            </div>
+            <div className="text-left min-w-0">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
+                Language / भाषा निवडा
+              </span>
+              <span className="text-xs font-bold text-brand-navy-900 flex items-center gap-1.5 mt-0.5 truncate">
+                <span>{currentOption.flag}</span>
+                <span>{currentOption.nativeLabel}</span>
+                <span className="text-slate-400 font-normal truncate">({currentOption.country})</span>
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-1 text-xs font-bold text-brand-teal-700 flex-shrink-0 ml-2">
+            <span>{mobileExpanded ? 'Close' : 'Change'}</span>
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-200 ${
+                mobileExpanded ? 'rotate-180' : ''
+              }`}
+            />
+          </div>
+        </button>
+
+        {mobileExpanded && (
+          <div className="grid grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1 mt-2.5 pt-2.5 border-t border-slate-200 animate-in fade-in duration-150">
+            {SUPPORTED_LANGUAGES.map((lang) => {
+              const isActive = language === lang.code;
+              return (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => {
+                    handleSelect(lang.code);
+                    setMobileExpanded(false);
+                  }}
+                  className={`py-2 px-2.5 rounded-xl text-left border flex items-center gap-2 transition-all ${
+                    isActive
+                      ? 'bg-brand-navy-900 text-brand-gold-400 border-brand-gold-500 shadow-sm'
+                      : 'bg-slate-50 text-slate-800 hover:bg-slate-100 border-slate-200'
+                  }`}
+                >
+                  <span className="text-base">{lang.flag}</span>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-xs font-bold truncate leading-tight">
+                      {lang.nativeLabel}
+                    </span>
+                    <span className="text-[10px] text-slate-400 truncate leading-tight">
+                      {lang.country}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }
